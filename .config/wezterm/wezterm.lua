@@ -2,7 +2,7 @@ local wezterm = require("wezterm")
 
 local config = wezterm.config_builder()
 
-config.window_background_opacity = 0.6 -- Adjust this value as needed
+config.window_background_opacity = 0.90 -- Adjust this value as needed
 
 config.color_scheme = "Catppuccin Mocha"
 

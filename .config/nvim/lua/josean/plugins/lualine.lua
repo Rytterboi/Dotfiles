@@ -5,15 +5,16 @@ return {
     local lualine = require("lualine")
     local lazy_status = require("lazy.status") -- to configure lazy pending updates count
 
+    -- Catppuccin colors
     local colors = {
-      blue = "#65D1FF",
-      green = "#3EFFDC",
-      violet = "#FF61EF",
-      yellow = "#FFDA7B",
-      red = "#FF4A4A",
-      fg = "#c3ccdc",
-      bg = "#112638",
-      inactive_bg = "#2c3043",
+      blue = "#65D1FF", -- Example color, can be adjusted
+      green = "#3EFFDC", -- Example color, can be adjusted
+      violet = "#FF61EF", -- Example color, can be adjusted
+      yellow = "#FFDA7B", -- Example color, can be adjusted
+      red = "#FF4A4A", -- Example color, can be adjusted
+      fg = "#CBE0F0", -- Foreground color from Catppuccin
+      bg = "#1E1E2E", -- Background color from Catppuccin
+      inactive_bg = "#2A273F", -- Inactive background color
     }
 
     local my_lualine_theme = {
@@ -43,13 +44,13 @@ return {
         c = { bg = colors.bg, fg = colors.fg },
       },
       inactive = {
-        a = { bg = colors.inactive_bg, fg = colors.semilightgray, gui = "bold" },
-        b = { bg = colors.inactive_bg, fg = colors.semilightgray },
-        c = { bg = colors.inactive_bg, fg = colors.semilightgray },
+        a = { bg = colors.inactive_bg, fg = colors.fg, gui = "bold" },
+        b = { bg = colors.inactive_bg, fg = colors.fg },
+        c = { bg = colors.inactive_bg, fg = colors.fg },
       },
     }
 
-    -- configure lualine with modified theme
+    -- Configure lualine with the Catppuccin theme
     lualine.setup({
       options = {
         theme = my_lualine_theme,
@@ -59,7 +60,7 @@ return {
           {
             lazy_status.updates,
             cond = lazy_status.has_updates,
-            color = { fg = "#ff9e64" },
+            color = { fg = "#ff9e64" }, -- You can adjust this color as needed
           },
           { "encoding" },
           { "fileformat" },

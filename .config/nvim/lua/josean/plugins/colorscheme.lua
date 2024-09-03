@@ -1,45 +1,72 @@
 return {
-  "folke/tokyonight.nvim",
+  "catppuccin/nvim",
+  name = "catppuccin",
   priority = 1000,
   config = function()
-    local transparent = true -- set to true if you would like to enable transparency
+    local transparent = true -- Set to true if you would like to enable transparency
 
-    local bg = "#011628"
-    local bg_dark = "#011423"
-    local bg_highlight = "#143652"
-    local bg_search = "#0A64AC"
-    local bg_visual = "#275378"
-    local fg = "#CBE0F0"
-    local fg_dark = "#B4D0E9"
-    local fg_gutter = "#627E97"
-    local border = "#547998"
+    -- Catppuccin colors
+    local bg = "#1e1e2e" -- Background color
+    local bg_dark = "#11111b" -- Darker background color
+    local bg_highlight = "#2a273f" -- Highlight background color
+    local bg_search = "#f5a97f" -- Search background color
+    local bg_visual = "#3e2a5f" -- Visual selection background color
+    local fg = "#e0def4" -- Foreground color
+    local fg_dark = "#c6c6d4" -- Darker foreground color
+    local fg_gutter = "#a6a6b2" -- Gutter foreground color
+    local border = "#54546d" -- Border color
 
-    require("tokyonight").setup({
-      style = "night",
-      transparent = transparent,
-      styles = {
-        sidebars = transparent and "transparent" or "dark",
-        floats = transparent and "transparent" or "dark",
+    require("catppuccin").setup({
+      flavour = "mocha", -- Choose from 'latte', 'frappe', 'macchiato', 'mocha'
+      background = { -- :h background
+        light = "latte",
+        dark = "mocha",
       },
-      on_colors = function(colors)
-        colors.bg = bg
-        colors.bg_dark = transparent and colors.none or bg_dark
-        colors.bg_float = transparent and colors.none or bg_dark
-        colors.bg_highlight = bg_highlight
-        colors.bg_popup = bg_dark
-        colors.bg_search = bg_search
-        colors.bg_sidebar = transparent and colors.none or bg_dark
-        colors.bg_statusline = transparent and colors.none or bg_dark
-        colors.bg_visual = bg_visual
-        colors.border = border
-        colors.fg = fg
-        colors.fg_dark = fg_dark
-        colors.fg_float = fg
-        colors.fg_gutter = fg_gutter
-        colors.fg_sidebar = fg_dark
-      end,
+      transparent_background = transparent,
+      term_colors = false,
+      dim_inactive = {
+        enabled = false,
+        shade = "dark",
+        percentage = 0.15,
+      },
+      no_italic = false, -- Force no italic
+      no_bold = false, -- Force no bold
+      styles = {
+        comments = { "italic" },
+        conditionals = { "italic" },
+        loops = {},
+        functions = {},
+        keywords = {},
+        strings = {},
+        variables = {},
+        numbers = {},
+        booleans = {},
+        properties = {},
+        types = {},
+        operators = {},
+      },
+      color_overrides = {
+        bg = bg,
+        bg_dark = bg_dark,
+        bg_highlight = bg_highlight,
+        bg_search = bg_search,
+        bg_visual = bg_visual,
+        fg = fg,
+        fg_dark = fg_dark,
+        fg_gutter = fg_gutter,
+        border = border,
+      },
+      custom_highlights = {},
+      integrations = {
+        cmp = true,
+        gitsigns = true,
+        nvimtree = true,
+        telescope = true,
+        notify = false,
+        mini = false,
+      },
     })
 
-    vim.cmd("colorscheme tokyonight")
+    vim.cmd("colorscheme catppuccin")
   end,
 }
