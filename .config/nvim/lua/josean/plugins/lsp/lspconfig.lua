@@ -131,7 +131,21 @@ return {
           },
         })
       end,
+      -- Add OmniSharp configuration
+      ["omnisharp"] = function()
+        lspconfig["omnisharp"].setup({
+          cmd = { "dotnet", "/home/rytter/.local/share/nvim/mason/packages/omnisharp/libexec/OmniSharp.dll" },
+          on_attach = function(client, bufnr)
+            -- Add any specific on_attach functionality here if needed
+          end,
+          capabilities = capabilities,
+          settings = {
+            FormattingOptions = {
+              EnableEditorConfigSupport = true, -- Enable EditorConfig support
+            },
+          },
+        })
+      end,
     })
   end,
 }
-

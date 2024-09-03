@@ -20,11 +20,23 @@ return {
         liquid = { "prettier" },
         lua = { "stylua" },
         python = { "isort", "black" },
+        cs = { "dotnet_format" },
       },
       format_on_save = {
         lsp_fallback = true,
         async = false,
         timeout_ms = 1000,
+      },
+      formatters = {
+        dotnet_format = {
+          command = "dotnet",
+          args = function(bufnr)
+            return { "format", "--check", "--verbosity", "diagnostic", "." }
+          end,
+          stdin = false,
+          try_node_modules = false,
+          try_git = false,
+        },
       },
     })
 
