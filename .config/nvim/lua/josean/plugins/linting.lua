@@ -4,14 +4,14 @@ return {
   config = function()
     local lint = require("lint")
 
-    -- Define a custom linter for dotnet format
-    lint.linters.dotnet_format = {
-      name = "dotnet_format", -- Required field: Name of the linter
-      cmd = "dotnet", -- Required field: Command to run
-      args = { "format", "--check", "--verbosity", "diagnostic", "." }, -- Use "." to refer to the current directory
+    -- Define a custom linter for csharpier
+    lint.linters.csharpier = {
+      name = "csharpier", -- Required field: Name of the linter
+      cmd = "csharpier", -- Command to run
+      args = { "--check", "$FILENAME" }, -- Arguments to pass to the command
       stream = "stderr", -- Stream to read output from
       severity = "error", -- Severity level of the linter
-      parser = function(output) -- Required field: Function to parse the output
+      parser = function(output) -- Function to parse the output
         local results = {}
         for line in output:gmatch("[^\r\n]+") do
           -- Adjust the parsing logic based on the output format
@@ -36,7 +36,7 @@ return {
       typescriptreact = { "eslint_d" },
       svelte = { "eslint_d" },
       python = { "pylint" },
-      cs = { "dotnet_format", "omnisharp" },
+      cs = { "csharpier " },
     }
 
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
