@@ -4,31 +4,6 @@ return {
   config = function()
     local lint = require("lint")
 
-    -- Define a custom linter for csharpier
-    lint.linters.csharpier = {
-      name = "csharpier",
-      cmd = "csharpier",
-      args = { "--check", "$FILENAME" }, -- Check the current file
-      stream = "stderr",
-      severity = "error",
-      parser = function(output)
-        local results = {}
-        for line in output:gmatch("[^\r\n]+") do
-          -- Adjust the parsing logic based on csharpier output format
-          local file, message = line:match("^(.*): (.*)$")
-          if file and message then
-            table.insert(results, {
-              row = 1, -- Adjust this to match the actual line number if available
-              col = 1,
-              message = message,
-              severity = "error",
-            })
-          end
-        end
-        return results
-      end,
-    }
-
     lint.linters_by_ft = {
       javascript = { "eslint_d" },
       typescript = { "eslint_d" },
@@ -36,7 +11,6 @@ return {
       typescriptreact = { "eslint_d" },
       svelte = { "eslint_d" },
       python = { "pylint" },
-      cs = { "csharpier " },
     }
 
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
