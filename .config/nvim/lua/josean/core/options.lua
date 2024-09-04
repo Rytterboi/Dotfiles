@@ -5,6 +5,12 @@ local opt = vim.opt
 opt.relativenumber = true
 opt.number = true
 
+-- Set linelength options
+opt.textwidth = 80
+opt.colorcolumn = "80"
+opt.wrap = true -- Enable line wrapping
+opt.linebreak = true -- Wrap lines at word boundaries
+
 -- tabs & indentation
 opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
 opt.shiftwidth = 2 -- 2 spaces for indent width
